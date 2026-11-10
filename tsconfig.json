@@ -1,0 +1,34 @@
+{
+  "compilerOptions": {
+    // Where our TypeScript files are
+    "rootDir": ".",
+    // Where compiled JavaScript files go
+    "outDir": "./dist",
+    // Node.js module system
+    "module": "nodenext",
+    "target": "es2022",
+    "types": [
+      "node"
+    ],
+    // Generate source maps for debugging
+    "sourceMap": true,
+    // Strict type checking
+    "strict": true,
+    "noUncheckedIndexedAccess": true,
+    "exactOptionalPropertyTypes": true,
+    // Module handling
+    "verbatimModuleSyntax": true,
+    "isolatedModules": true,
+    "noUncheckedSideEffectImports": true,
+    "moduleDetection": "force",
+    // Skip checking dependency declaration files
+    "skipLibCheck": true
+  },
+  "include": [
+    "src/**/*.ts",
+    "drizzle.config.ts"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}
