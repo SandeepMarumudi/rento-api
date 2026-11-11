@@ -16,8 +16,10 @@ export const authController: FastifyPluginAsync = async (fastify) => {
       }
     const result = await registerOwner(validatedData.data);
     return reply.status(201).send({
+      status: 201,
         message: "Owner registered successfully",
         data: result,
+        errors: [],
     });
     } catch (error) {
         if (error instanceof Error && error.message === "User already exists") {
@@ -53,10 +55,10 @@ export const authController: FastifyPluginAsync = async (fastify) => {
       });
   
       return reply.status(200).send({
+        status: 200,
         message: "Login successful",
-        data: {
-          user: result.user,
-        },
+        data: result.user,
+        errors: [],
       });
     } catch (error) {
       if (error instanceof Error) {
@@ -81,8 +83,11 @@ export const authController: FastifyPluginAsync = async (fastify) => {
 
   fastify.get("/auth/me",{preHandler:authenticate},async (request,reply) => {
     return reply.status(200).send({
-        user: request.user,
-    })
+        status: 200,
+        message: "User fetched successfully",
+        data: request.user,
+        errors: [],
+      });
   })
   
   fastify.post(
@@ -106,8 +111,11 @@ export const authController: FastifyPluginAsync = async (fastify) => {
         path: "/",
       });
   
-      return reply.send({
+      return reply.status(200).send({
+        status: 200,
         message: "Logged out successfully",
+        data: null,
+        errors: [],
       });
     },
   );

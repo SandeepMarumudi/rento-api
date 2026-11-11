@@ -1,11 +1,15 @@
 import Fastify from "fastify";
 import { authController } from "./controllers/auth.controller.js";
 import cookie from "@fastify/cookie";
+import cors from "@fastify/cors";
 
 export const app = Fastify({
   logger: true,
 });
-
+await app.register(cors, {
+  origin: "http://localhost:3000",
+  credentials: true,
+});
 // Health check route
 app.get("/health", async (request, reply) => {
   return {
