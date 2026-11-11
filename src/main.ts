@@ -1,12 +1,9 @@
 import {app} from "./app.js";
-import { getTestConnectionName } from "./services/database.service.js";
 
+const port = Number(process.env.PORT) || 3001;
 const start=async()=>{
     try{
-        const testConnectionName = await getTestConnectionName();
-        console.log(testConnectionName);
-        await app.listen({port:3001,host:"0.0.0.0"})
-        console.log("Server is running on port 3000");
+        await app.listen({port,host:"0.0.0.0"})
     }catch(err){
         app.log.error(err);
         process.exit(1);
