@@ -49,7 +49,7 @@ export const authController: FastifyPluginAsync = async (fastify) => {
       reply.setCookie("session", result.sessionToken, {
         httpOnly: true,
         secure: process.env.NODE_ENV === "production",
-        sameSite: "lax",
+        sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
         path: "/",
         maxAge: 7 * 24 * 60 * 60,
       });
