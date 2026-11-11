@@ -6,8 +6,12 @@ import cors from "@fastify/cors";
 export const app = Fastify({
   logger: true,
 });
+const frontendUrl =
+  process.env.FRONTEND_URL || "http://localhost:3000";
+
+
 await app.register(cors, {
-  origin: "http://localhost:3000",
+  origin: frontendUrl,
   credentials: true,
 });
 // Health check route
