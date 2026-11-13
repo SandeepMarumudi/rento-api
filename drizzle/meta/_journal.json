@@ -8,6 +8,20 @@
       "when": 1794159782039,
       "tag": "0000_plain_masked_marvel",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1794560972216,
+      "tag": "0001_vengeful_adam_destine",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1794561917152,
+      "tag": "0002_keen_shiva",
+      "breakpoints": true
     }
   ]
 }
