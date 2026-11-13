@@ -2,6 +2,7 @@ import Fastify from "fastify";
 import { authController } from "./controllers/auth.controller.js";
 import cookie from "@fastify/cookie";
 import cors from "@fastify/cors";
+import { propertyController } from "./controllers/property.controller.js";
 
 export const app = Fastify({
   logger: true,
@@ -28,3 +29,4 @@ app.get("/health", async (request, reply) => {
 app.decorateRequest("user", null);
 await app.register(cookie);
 await app.register(authController);
+await app.register(propertyController);

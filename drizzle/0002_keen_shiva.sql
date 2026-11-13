@@ -1,0 +1,1 @@
+ALTER TABLE "properties" ALTER COLUMN "bed_label_style" SET DEFAULT 'numeric';
