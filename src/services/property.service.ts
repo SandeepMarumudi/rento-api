@@ -12,3 +12,12 @@ export const createProperty=async(data:PropertyRequestDto,organizationId:string)
     }
 
 }
+
+export const getProperties=async(organizationId:string)=>{
+    try{
+        const result=await db.select().from(properties).where(eq(properties.organization_id,organizationId));
+        return result;
+    }catch(error){
+        throw new Error("Failed to get properties");
+    }
+}

@@ -1,7 +1,7 @@
 import { authenticate } from "../middlewares/auth.middleware.js";
 import type { FastifyPluginAsync } from "fastify";
 import { propertyValidator } from "../validators/property.validator.js";
-import { createProperty } from "../services/property.service.js";
+import { createProperty, getProperties } from "../services/property.service.js";
 
 export const propertyController: FastifyPluginAsync = async (fastify) => {
   fastify.post(
@@ -36,4 +36,19 @@ export const propertyController: FastifyPluginAsync = async (fastify) => {
       });
     },
   );
+  fastify.get("/properties",{preHandler:authenticate},async (request,reply) => {
+    if(!request.user){
+      return reply.status(401).send({
+        message: "Authentication required",
+        code:"UNAUTHORIZED",
+      });
+    }
+    const properties=await getProperties(request.user.organization_id);
+    return reply.status(200).send({
+      status: 200,
+      message: "Properties fetched successfully",
+      data: properties,
+      errors: [],
+    });
+  });
 };
