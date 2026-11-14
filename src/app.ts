@@ -17,6 +17,7 @@ const frontendUrls = [
 await app.register(cors, {
   origin: frontendUrls,
   credentials: true,
+  methods: ["GET", "POST", "PATCH", "PUT", "DELETE", "OPTIONS"],
 });
 // Health check route
 app.get("/health", async (request, reply) => {
