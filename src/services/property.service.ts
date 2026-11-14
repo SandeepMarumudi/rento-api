@@ -24,8 +24,18 @@ export const getProperties=async(organizationId:string)=>{
 
 export const getPropertyById=async(propertyId:string,organizationId:string)=>{
     try{
-        const result=await db.select().from(properties).where(and(eq(properties.id,propertyId),eq(properties.organization_id,organizationId)));
-        return result;
+        const [property] = await db
+        .select()
+        .from(properties)
+        .where(
+          and(
+            eq(properties.id, propertyId),
+            eq(properties.organization_id, organizationId),
+          ),
+        )
+        .limit(1);
+      
+      return property ?? null;
     }catch(error){
         throw new Error("Failed to get property by id");
     }
@@ -33,8 +43,18 @@ export const getPropertyById=async(propertyId:string,organizationId:string)=>{
 
 export const updateProperty=async(propertyId:string,data:UpdatePropertyRequestDto,organizationId:string)=>{
     try{
-        const result=await db.update(properties).set({...data}).where(and(eq(properties.id,propertyId),eq(properties.organization_id,organizationId)));
-        return result;
+        const [property] = await db
+        .update(properties)
+        .set({ ...data, updated_at: new Date() })
+        .where(
+          and(
+            eq(properties.id, propertyId),
+            eq(properties.organization_id, organizationId),
+          ),
+        )
+        .returning();
+      
+      return property ?? null;
     }catch(error){
         throw new Error("Failed to update property");
     }
