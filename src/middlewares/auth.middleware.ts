@@ -5,7 +5,7 @@ import {db} from "../database/database.js"
 import { sessions } from "../entity/sessions.entity.js"
 import { users } from "../entity/users.entity.js"
 
-export const authenticate:preHandlerHookHandler = async (request,reply,done) => {
+export const authenticate:preHandlerHookHandler = async (request,reply) => {
     const sessionToken = request.cookies.session
     if(!sessionToken){
         return reply.status(401).send({message: "Authentication required",code:"UNAUTHENTICATED"})

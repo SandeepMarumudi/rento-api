@@ -22,6 +22,13 @@
       "when": 1794561917152,
       "tag": "0002_keen_shiva",
       "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "7",
+      "when": 1794754783554,
+      "tag": "0003_familiar_anthem",
+      "breakpoints": true
     }
   ]
 }

@@ -3,6 +3,7 @@ import { authController } from "./controllers/auth.controller.js";
 import cookie from "@fastify/cookie";
 import cors from "@fastify/cors";
 import { propertyController } from "./controllers/property.controller.js";
+import { floorController } from "./controllers/floor.controller.js";
 
 export const app = Fastify({
   logger: true,
@@ -31,3 +32,4 @@ app.decorateRequest("user", null);
 await app.register(cookie);
 await app.register(authController);
 await app.register(propertyController);
+await app.register(floorController);
